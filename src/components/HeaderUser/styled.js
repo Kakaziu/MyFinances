@@ -4,7 +4,7 @@ export const Container = styled.div`
     position: absolute;
     z-index: 9998;
     right: 9%;
-    bottom: -290px;
+    top: 80%;
     background-color: ${(props) => props.theme.colors.secondary};
     color: ${(props) => props.theme.colors.minorColor};
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
@@ -60,9 +60,25 @@ export const Container = styled.div`
         cursor: pointer;
         text-decoration: none;
         text-align: center;
+
+        @media (max-width: 850px){
+            padding: 12px 0px;
+        }
     }
 
     a, button:hover{
         background-color: #d91c61;
     }
+
+    /* @media (max-width: 850px){
+        top: 70px;
+    } */
 ` 
+
+export const MobileBtnTransition = styled.button`
+    display: none;
+
+    @media (max-width: 850px){
+        display: block;
+    }
+`

@@ -34,6 +34,10 @@ export const Container = styled.div`
 
 export const Logo = styled.h2`
     color: white;
+
+    @media (max-width: 850px){
+        font-size: 22px;
+    }
 `
 
 export const Menu = styled.ul`
@@ -59,6 +63,10 @@ export const Button = styled.button`
 
     &:hover{
         background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 850px){
+        display: none;
     }
 `
 
