@@ -27,6 +27,15 @@ export const ModalForm = styled.form`
         font-size: 10px;
         color: red;
     }
+
+    @media (max-width: 560px){
+        width: 75%;
+    }
+
+    @media (max-width: 350px){
+        width: 75%;
+        padding: 25px;
+    }
 `
 
 export const Title = styled.h2`
@@ -44,6 +53,10 @@ export const Input = styled.input`
     margin: auto;
     margin-top: 15px;
     outline: 0;
+
+    @media (max-width: 350px){
+        font-size: 15px;
+    }
 `
 
 export const Controller = styled.div`
@@ -70,6 +83,11 @@ export const InputType = styled.div`
         margin-right: 15px;
         margin-bottom: 1px;
     }
+
+    @media (max-width: 350px){
+        font-size: 13px;
+        width: 50%;
+    }
 `
 
 export const Button = styled.button`
@@ -87,4 +105,16 @@ export const Button = styled.button`
     &:hover{
         background-color: #06cf28;
     }
+`
+
+export const MobileBtnModal = styled.span`
+    position: absolute;
+    top: 10%;
+    left: 87%;
+    border: none;
+    background-color: transparent;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
 `

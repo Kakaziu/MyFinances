@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Input, InputType ,ModalDiv, ModalForm, Title, Controller, Button } from "./styled"
+import { Input, InputType ,ModalDiv, ModalForm, Title, Controller, Button, MobileBtnModal } from "./styled"
 import { AiOutlineUpCircle, AiOutlineDownCircle } from 'react-icons/ai'
 import { useSelector } from "react-redux"
 import { useDispatch } from 'react-redux'
@@ -71,6 +71,7 @@ const Modal = () =>{
     return (
         <ModalDiv show={modal} onClick={offModal} id='modal'>
             <ModalForm onSubmit={handleSubmit}>
+                <MobileBtnModal onClick={() => {dispatch(hideModal); setCamps()}}>X</MobileBtnModal>
                 <Title>Nova transação</Title>
                 
                 <Input type='text' placeholder="Título" value={inputTitle.value} onChange={(e) => setInputTitle({ value: e.target.value, error: '' })}/>
