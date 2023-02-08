@@ -23,6 +23,10 @@ export const Table = styled.table`
         color: ${(props) => props.theme.colors.minorColor};
         transition: 0.2s;
     }
+
+    @media (max-width: 850px){
+        position: static;
+    }
 `
 
 export const ValueTd = styled.td`

@@ -9,6 +9,10 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 850px){
+        flex-wrap: wrap;
+    }
 `
 
 export const TextInfos = styled.span`
@@ -31,6 +35,14 @@ export const InfosUser = styled.div`
 
     ${TextInfos}{
         color: ${(props) => props.conditionCount ? 'white' : '#82838f'};
+    }
+
+    @media (max-width: 850px){
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 850px){
+        width: 100%;
     }
 `
 

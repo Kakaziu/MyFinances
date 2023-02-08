@@ -8,4 +8,9 @@ export const StyledDiv = styled.div`
     z-index: 0;
     transition: 0.2s;
     background-color: ${(props) => props.theme.colors.primary};
+
+    @media (max-width: 850px){
+        min-height: 115vh;
+        position: static;
+    }
 `
