@@ -1,4 +1,4 @@
-import { Table, ValueTd, TypeTd, DataTd } from './styled'
+import { Table, ValueTd, TypeTd, DataTd, TransitionsMobile, ElementMobile, DescriptionMobile, TitleMobile} from './styled'
 import { AiOutlineUpCircle, AiOutlineDownCircle, AiFillDelete } from 'react-icons/ai'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,6 +9,7 @@ const TableTransition = () =>{
     const transitions = useSelector(state => state.TransitionReducer)
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
+    const [showMobileDescription, setShowMobileDescription] = useState(null)
 
     useEffect(() =>{
         dispatch(getTransitionsRequest)
@@ -27,12 +28,22 @@ const TableTransition = () =>{
         return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
     }
 
+    // function handleShowMobileDescription(id){
+    //     if(id === showMobileDescription){
+    //         console.log('Boa')
+    //         return true
+    //     }
+    //     console.log('Noe')
+    //     return false
+    // }
+
     if(loading){
         return <h1>Loading...</h1>
     }
 
     return(
-        <Table>
+        <>
+            <Table>
             <thead>
                 <tr>
                     <th>Título</th>
@@ -55,6 +66,35 @@ const TableTransition = () =>{
                 })}
             </tbody>
         </Table>
+        <TransitionsMobile>
+        <h2>Transições</h2>
+        {transitions.map((transition, index) => {
+                return (
+                    <ElementMobile key={transition._id}>
+                        <TitleMobile 
+                        type={transition.type} 
+                        color={transition.type === 'Entrada' ? 'green' : 'red'}
+                        onClick={ () => {
+                            if(showMobileDescription === transition._id){
+                                setShowMobileDescription(null)
+                                return
+                            }
+                            setShowMobileDescription(transition._id)
+                        } }
+                        >
+                            {transition.title}
+                        </TitleMobile>
+                        <DescriptionMobile show={transition._id === showMobileDescription ? true : false } type={transition.type} color={transition.type === 'Entrada' ? 'green' : 'red'}>
+                            <p><span>Título:</span> {transition.title}</p>
+                            <p><span>Valor:</span> {formatValue(transition.value)}</p>
+                            <p><span>Categoria:</span> {transition.type}</p>
+                            <p><span>Data:</span> {formatData(transition.createdAt)}</p>
+                        </DescriptionMobile>
+                    </ElementMobile>
+                )
+            })}
+        </TransitionsMobile>
+        </>
     )
 }
 

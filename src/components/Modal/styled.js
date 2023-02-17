@@ -117,4 +117,9 @@ export const MobileBtnModal = styled.span`
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
+    display: none;
+
+    @media (max-width: 600px){
+        display: block;
+    }
 `
