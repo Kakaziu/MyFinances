@@ -109,8 +109,8 @@ export const Button = styled.button`
 
 export const MobileBtnModal = styled.span`
     position: absolute;
-    top: 10%;
-    left: 87%;
+    top: 7%;
+    left: 90%;
     border: none;
     background-color: transparent;
     color: red;
@@ -121,5 +121,10 @@ export const MobileBtnModal = styled.span`
 
     @media (max-width: 600px){
         display: block;
+    }
+
+    @media (max-width: 350px){
+        left: 85%;
+        top: 10%;
     }
 `

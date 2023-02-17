@@ -22,7 +22,7 @@ export const Form = styled.form`
     }
 
     p{
-        font-weight: bold;
+        font-weight: bold; 
     }
 
     button{
@@ -50,6 +50,10 @@ export const Form = styled.form`
         text-align: left;
         color: red;
     }
+
+    @media (max-width: 450px){
+        width: 75%;
+    }
 `
 
 export const InputContainer = styled.div`
@@ -60,6 +64,12 @@ export const InputContainer = styled.div`
         position: absolute;
         top: 28.5px;
         left: 20px;
+
+        @media (max-width: 450px){
+            left: 10px;
+            top: 29px;
+            z-index: 9999;
+        }
     }
 
     input{
@@ -73,6 +83,11 @@ export const InputContainer = styled.div`
 
         &::placeholder{
             color: #adadad;
+        }
+
+        @media (max-width: 450px){
+            position: relative;
+            right: 12px;
         }
     }
 `
