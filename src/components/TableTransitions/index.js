@@ -1,4 +1,4 @@
-import { Table, ValueTd, TypeTd, DataTd, TransitionsMobile, ElementMobile, DescriptionMobile, TitleMobile} from './styled'
+import { Table, ValueTd, TypeTd, DataTd, TransitionsMobile, ElementMobile, DescriptionMobile, TitleMobile, RowTable } from './styled'
 import { AiOutlineUpCircle, AiOutlineDownCircle, AiFillDelete } from 'react-icons/ai'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -10,6 +10,7 @@ const TableTransition = () =>{
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
     const [showMobileDescription, setShowMobileDescription] = useState(null)
+    const [opacityDelete, setOpacityDelete] = useState(false)
 
     useEffect(() =>{
         dispatch(getTransitionsRequest)
@@ -28,15 +29,6 @@ const TableTransition = () =>{
         return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
     }
 
-    // function handleShowMobileDescription(id){
-    //     if(id === showMobileDescription){
-    //         console.log('Boa')
-    //         return true
-    //     }
-    //     console.log('Noe')
-    //     return false
-    // }
-
     if(loading){
         return <h1>Loading...</h1>
     }
@@ -45,23 +37,26 @@ const TableTransition = () =>{
         <>
             <Table>
             <thead>
-                <tr>
+                <RowTable>
                     <th>Título</th>
                     <th>Valor</th>
                     <th>Categoria</th>
                     <th>Data</th>
-                </tr>
+                </RowTable>
             </thead>
             <tbody>
                 {transitions.map(transition => {
                     return (
-                        <tr key={transition._id}>
+                        <RowTable key={transition._id} opacity={opacityDelete === transition._id}>
                             <td>{transition.title}</td>
                             <ValueTd>{formatValue(transition.value)}</ValueTd>
                             <TypeTd type={transition.type} color={transition.type === 'Entrada' ? 'green' : 'red'}>{transition.type}<span>{transition.type === 'Entrada' ? <AiOutlineUpCircle size='20'/> : <AiOutlineDownCircle size='20'/>}</span></TypeTd>
                             <DataTd>{formatData(transition.createdAt)}</DataTd>
-                            <td><AiFillDelete color='red' cursor='pointer' onClick={() => dispatch(deleteTransitionRequest(transition._id))}/></td>
-                        </tr>
+                            <td><AiFillDelete color='red' cursor='pointer' onClick={() => {
+                                setOpacityDelete(transition._id)
+                                dispatch(deleteTransitionRequest(transition._id))
+                            }}/></td>
+                        </RowTable>
                     )
                 })}
             </tbody>
@@ -97,12 +92,5 @@ const TableTransition = () =>{
         </>
     )
 }
-
-<tr>
-    <td>Salário</td>
-    <ValueTd>R$6.000</ValueTd>
-    {/* <TypeTd type={type} color={type === 'Entry' ? 'green' : 'red'}>Entrada</TypeTd> */}
-    <DataTd>26/01/2023</DataTd>
-</tr>
 
 export default TableTransition

@@ -10,6 +10,23 @@ export const Table = styled.table`
     margin: auto;
     text-align: center;
 
+
+    @media (max-width: 850px){
+        position: static;
+        width: 100%;
+        transform: translateX(0%);
+    }
+
+    @media (max-width: 680px){
+        display: none;
+    }
+`
+
+export const RowTable = styled.tr`
+    opacity: ${(props) => props.opacity ? '0' : '1'};
+    transition: 0.5s;
+
+    
     th{
         color: #82838f;
     }
@@ -22,16 +39,6 @@ export const Table = styled.table`
         margin-top: 10px;
         color: ${(props) => props.theme.colors.minorColor};
         transition: 0.2s;
-    }
-
-    @media (max-width: 850px){
-        position: static;
-        width: 100%;
-        transform: translateX(0%);
-    }
-
-    @media (max-width: 680px){
-        display: none;
     }
 `
 

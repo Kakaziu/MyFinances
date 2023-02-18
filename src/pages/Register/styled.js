@@ -14,7 +14,7 @@ export const Form = styled.form`
     background-color: rgba(255, 255, 255, 0.5);
     padding: 30px;
     text-align: center;
-    width: 350px;
+    width: 400px;
 
     strong{
         color: #f7206f;
