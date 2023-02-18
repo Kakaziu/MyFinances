@@ -5,6 +5,7 @@ import { loginRequest } from '../../store/modules/user/UserActions'
 import { MdMail, } from 'react-icons/md'
 import { AiFillLock } from 'react-icons/ai'
 import { useEffect, useState } from "react"
+import ReactLoading from 'react-loading'
 
 
 const Login = () =>{
@@ -12,12 +13,15 @@ const Login = () =>{
     const dispatch = useDispatch()
     const user = useSelector(state => state.UserReducer)
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(null)
     const [inputEmail, setInputEmail] = useState({ value: '', error: '' })
     const [inputPassword, setInputPassword] = useState({ value: '', error: '' })
 
     useEffect(() =>{
         if(user.user){
             navigate('/')                     
+        }else{
+            setLoading(null)
         }
     })
 
@@ -33,8 +37,8 @@ const Login = () =>{
         }
 
         if(inputEmail.value && inputPassword.value){
+            setLoading(true)
             dispatch(loginRequest(data))
-            console.log(user.user)
         }
     }
 
@@ -43,6 +47,8 @@ const Login = () =>{
             setFunc({ value: '', error: `* O campo "${camp}" está vazio.` })
         }
     }
+
+    console.log(user)
 
     return(
         <Container>
@@ -62,7 +68,7 @@ const Login = () =>{
                     <input type='password' placeholder="Senha" id="password" value={inputPassword.value} onChange={(e) => setInputPassword({ value: e.target.value, error: '' })}/>
                 </InputContainer>
                 <span>{inputPassword.error}</span>
-                <button>Login</button>
+                <button>Login {loading ? <span><ReactLoading type={'spin'} height={'1%'} width={'100%'}/></span> : ''}</button>
                 <RegisterWay>Não tem uma conta? <Link to='/register'>Cadastre-se</Link></RegisterWay>
             </Form>
 

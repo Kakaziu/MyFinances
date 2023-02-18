@@ -6,10 +6,12 @@ import { AiFillLock } from 'react-icons/ai'
 import api from "../../services/api"
 import { useState } from "react"
 import { toast } from 'react-toastify'
+import ReactLoading from 'react-loading'
 
 const Register = () =>{
 
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(null)
     const [inputName, setInputName] = useState({ value: '', error: '' })
     const [inputEmail, setInputEmail] = useState({ value: '', error: '' })
     const [inputPassword, setInputPassword] = useState({ value: '', error: '' })
@@ -28,6 +30,7 @@ const Register = () =>{
         }
 
         if(inputName.value && inputEmail.value && inputPassword.value){
+            setLoading(true)
             try{
                 const response = await api.post('/users', data)
 
@@ -35,6 +38,7 @@ const Register = () =>{
                     navigate('/')
                 }
             }catch(e){
+                setLoading(null)
                 e.response.data.errors.map(error => toast.error(error))
             }
         }
@@ -69,7 +73,7 @@ const Register = () =>{
                     <input type='password' placeholder="Senha" id="password" value={inputPassword.value} onChange={(e) => setInputPassword({ value: e.target.value, error: '' })}/>
                 </InputContainer>
                 <span>{inputPassword.error}</span>
-                <button>Cadastrar</button>
+                <button>Cadastrar {loading ? <span><ReactLoading type={'spin'} height={'1%'} width={'100%'}/></span> : ''}</button>
             </Form>
         </Container>
     )

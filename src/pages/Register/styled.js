@@ -35,6 +35,17 @@ export const Form = styled.form`
         font-size: 16px;
         width: 100%;
         cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span{
+            margin: 2px 0px 0px 5px!important;
+            width: 5% !important;
+            padding: 0px !important;
+            text-align: center !important;
+        }
 
         &:hover{
             background-color: #db1d63;
