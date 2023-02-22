@@ -42,10 +42,7 @@ const Login = () =>{
         if(!value){
             setFunc({ value: '', error: `* O campo "${camp}" está vazio.` })
         }
-    }
-
-    console.log(user)
-    
+    }    
 
     return(
         <Container>

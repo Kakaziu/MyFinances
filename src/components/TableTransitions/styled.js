@@ -98,14 +98,14 @@ const smoothShow = keyframes`
     }
 
     to{
-        height: 120px;
+        height: 155px;
         opacity: 1;
     }
 `
 
 const smoothHide = keyframes`
     from{
-        height: 120px;
+        height: 155px;
         opacity: 1;
     }
 
@@ -135,6 +135,26 @@ export const DescriptionMobile = styled.div`
 
         span{
             font-weight: bold;
+        }
+    }
+
+    button{
+        display: block;
+        margin: auto;
+        padding: 7px 0px;
+        width: 75%;
+        cursor: pointer;
+        background-color: #f24153;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        span{
+            margin-left: 10px;
         }
     }
 `

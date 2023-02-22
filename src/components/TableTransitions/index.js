@@ -93,6 +93,7 @@ const TableTransition = (props) =>{
                             <p><span>Valor:</span> {formatValue(transition.value)}</p>
                             <p><span>Categoria:</span> {transition.type}</p>
                             <p><span>Data:</span> {formatData(transition.createdAt)}</p>
+                            <button onClick={() => handleDelete(transition._id)}>Apagar transição {transitionsState.loading ? <span><ReactLoading type={'spin'} height={'20px'} width={'20px'} color='red'/></span> : ''}</button>
                         </DescriptionMobile>
                     </ElementMobile>
                 )
