@@ -8,7 +8,7 @@ import { addTransitionRequest } from '../../store/modules/transition/TransitionA
 import { toast } from "react-toastify"
 
 const Modal = () =>{
-
+    
     const dispatch = useDispatch()
     const modal = useSelector(state => state.ModalReducer)
 

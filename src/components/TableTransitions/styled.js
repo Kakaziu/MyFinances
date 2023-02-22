@@ -23,10 +23,6 @@ export const Table = styled.table`
 `
 
 export const RowTable = styled.tr`
-    opacity: ${(props) => props.opacity ? '0' : '1'};
-    transition: 0.5s;
-
-    
     th{
         color: #82838f;
     }

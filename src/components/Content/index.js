@@ -4,9 +4,10 @@ import { MdAttachMoney } from 'react-icons/md'
 import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 
-const Infos = () =>{
+const Content = () =>{
 
-    const transitions = useSelector(state => state.TransitionReducer)
+    const transitionsState = useSelector(state => state.TransitionReducer)
+    const transitions = transitionsState.transitions
     const [totalEntry, setTotalEntry] = useState(0)
     const [totalExit, setTotalExit] = useState(0)
     const [total, setTotal] = useState(0)
@@ -78,4 +79,4 @@ const Infos = () =>{
     )
 }
 
-export default Infos
+export default Content

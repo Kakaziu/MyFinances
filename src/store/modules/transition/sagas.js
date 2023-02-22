@@ -29,8 +29,8 @@ function* deleteTransition({ payload }){
     try{
         const response = yield call(api.delete, `/transitions/${payload}`)
 
-        yield put(deleteTransitionSuccess(response.data.msg))
         toast.success(response.data.msg)
+        yield put(deleteTransitionSuccess(response.data.msg))
     }catch(e){
         console.log(e)
     }

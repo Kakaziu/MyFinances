@@ -1,16 +1,18 @@
+import ReactLoading from 'react-loading'
 import { Table, ValueTd, TypeTd, DataTd, TransitionsMobile, ElementMobile, DescriptionMobile, TitleMobile, RowTable } from './styled'
 import { AiOutlineUpCircle, AiOutlineDownCircle, AiFillDelete } from 'react-icons/ai'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTransitionsRequest, deleteTransitionRequest } from '../../store/modules/transition/TransitionActions'
 
-const TableTransition = () =>{
+const TableTransition = (props) =>{
 
-    const transitions = useSelector(state => state.TransitionReducer)
+    const transitionsState = useSelector(state => state.TransitionReducer)
+    const transitions = transitionsState.transitions
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(true)
     const [showMobileDescription, setShowMobileDescription] = useState(null)
-    const [opacityDelete, setOpacityDelete] = useState(false)
+    const [iconLoading, setIconLoading] = useState(null)
 
     useEffect(() =>{
         dispatch(getTransitionsRequest)
@@ -27,6 +29,11 @@ const TableTransition = () =>{
 
     function formatValue(value){
         return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})
+    }
+
+    function handleDelete(id){
+        dispatch(deleteTransitionRequest(id))
+        setIconLoading(id)
     }
 
     if(loading){
@@ -47,15 +54,17 @@ const TableTransition = () =>{
             <tbody>
                 {transitions.map(transition => {
                     return (
-                        <RowTable key={transition._id} opacity={opacityDelete === transition._id}>
+                        <RowTable key={transition._id}>
                             <td>{transition.title}</td>
                             <ValueTd>{formatValue(transition.value)}</ValueTd>
                             <TypeTd type={transition.type} color={transition.type === 'Entrada' ? 'green' : 'red'}>{transition.type}<span>{transition.type === 'Entrada' ? <AiOutlineUpCircle size='20'/> : <AiOutlineDownCircle size='20'/>}</span></TypeTd>
                             <DataTd>{formatData(transition.createdAt)}</DataTd>
-                            <td><AiFillDelete color='red' cursor='pointer' onClick={() => {
-                                setOpacityDelete(transition._id)
-                                dispatch(deleteTransitionRequest(transition._id))
-                            }}/></td>
+                            <td>{ !transitionsState.loading 
+                            ? <AiFillDelete color='red' cursor='pointer' onClick={() => handleDelete(transition._id)}/> 
+                            : iconLoading === transition._id 
+                            ? <ReactLoading type={'spin'} height={'20px'} width={'20px'} color='red'/> 
+                            : <AiFillDelete color='red' cursor='pointer' onClick={() => handleDelete(transition._id)} size='20'/> }
+                            </td>
                         </RowTable>
                     )
                 })}
