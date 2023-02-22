@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import api from '../../../services/api'
-import { loginSuccess, loginFailure, validateTokenSuccess, validateTokenFailure } from './UserActions'
+import { loginSuccess, loginFailure } from './UserActions'
 import { toast } from 'react-toastify'
 
 function* login(data){
