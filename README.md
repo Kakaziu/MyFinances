@@ -1,5 +1,5 @@
 <h1 align="center">MyFinances</h1>
-<p align="center">Um aplicativo para controlar as suas finanças</p>
+<p align="center">Um aplicativo para controlar as suas finanças que utiliza ReactJs e NodeJs</p>
 
 ## Features ✨
 <br>
