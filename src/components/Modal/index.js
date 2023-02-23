@@ -71,7 +71,6 @@ const Modal = () =>{
     return (
         <ModalDiv show={modal} onClick={offModal} id='modal'>
             <ModalForm onSubmit={handleSubmit}>
-                <MobileBtnModal onClick={() => {dispatch(hideModal); setCamps()}}>X</MobileBtnModal>
                 <Title>Nova transação</Title>
                 
                 <Input type='text' placeholder="Título" value={inputTitle.value} onChange={(e) => setInputTitle({ value: e.target.value, error: '' })}/>
